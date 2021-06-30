@@ -13,7 +13,7 @@ IFS="$OLD_IFS"
 NUM_GPUS=${#gpus[@]}
 
 # batch_size = num_gpus * IMG_PER_GPU
-BATCH_SIZE=`expr $NUM_GPUS \* $IMG_PER_GPU`
+# BATCH_SIZE=`expr $NUM_GPUS \* $IMG_PER_GPU`
 
 #DATASET=synthtext
 #DATASET_PATH=SynthText
@@ -28,7 +28,8 @@ python train_pixel_link.py \
             --gpu_memory_fraction=-1 \
             --train_image_width=512 \
             --train_image_height=512 \
-            --batch_size=${BATCH_SIZE}\
+            # --batch_size=${BATCH_SIZE}\
+            --batch_size=8\            
             --dataset_dir=${DATASET_DIR} \
             --dataset_name=${DATASET} \
             --dataset_split_name=train \

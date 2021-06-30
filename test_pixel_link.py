@@ -91,7 +91,7 @@ def to_txt(txt_path, image_name,
               line = "%d, %d, %d, %d, %d, %d, %d, %d\n"%tuple(values)
               lines.append(line)
         util.io.write_lines(filename, lines)
-        print 'result has been written to:', filename
+        print('result has been written to:', filename)
     
     mask = pixel_link.decode_batch(pixel_pos_scores, link_pos_scores)[0, ...]
     bboxes = pixel_link.mask_to_bboxes(mask, image_data.shape)
@@ -153,7 +153,7 @@ def test():
                     image:image_data
             })
                
-            print '%d/%d: %s'%(iter + 1, len(image_names), image_name)
+            print('%d/%d: %s'%(iter + 1, len(image_names), image_name))
             to_txt(txt_path,
                     image_name, image_data, 
                     pixel_pos_scores, link_pos_scores)
@@ -161,9 +161,9 @@ def test():
             
     # create zip file for icdar2015
     cmd = 'cd %s;zip -j %s %s/*'%(dump_path, zip_path, txt_path);
-    print cmd
+    print(cmd)
     util.cmd.cmd(cmd);
-    print "zip file created: ", util.io.join_path(dump_path, zip_path)
+    print("zip file created: ", util.io.join_path(dump_path, zip_path))
 
          
 

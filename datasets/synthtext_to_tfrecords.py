@@ -94,7 +94,7 @@ class SynthTextDataFetcher():
         rect_bboxes = []
         full_bboxes = []
         txts = []
-        for word_idx in xrange(num_words):
+        for word_idx in range(num_words):
             xys = self.get_word_bbox(image_idx, word_idx);       
             is_valid, min_x, min_y, max_x, max_y, xys = self.normalize_bbox(xys, width = w, height = h)
             if not is_valid:
@@ -122,10 +122,10 @@ def cvt_to_tfrecords(output_path , data_path, gt_path, records_per_file = 50000)
             fid = record_count / records_per_file
             tfrecord_writer = tf.python_io.TFRecordWriter(output_path%(fid))
 
-        print "converting image %d/%d"%(record_count, fetcher.num_images)
+        print("converting image %d/%d"%(record_count, fetcher.num_images))
         record = fetcher.fetch_record(image_idx);
         if record is None:
-            print '\nimage %d does not exist'%(image_idx + 1)
+            print('\nimage %d does not exist'%(image_idx + 1))
             continue;
         record_count += 1
         image_path, image, txts, rect_bboxes, oriented_bboxes = record;
