@@ -202,7 +202,7 @@ class PixelLinkNet(object):
         import config
         count_warning = tf.get_local_variable(
             name = 'count_warning', initializer = tf.constant(0.0))
-        batch_size = config.batch_size_per_gpu
+        batch_size = int(config.batch_size_per_gpu)
         ignore_label = config.ignore_label
         background_label = config.background_label
         text_label = config.text_label
