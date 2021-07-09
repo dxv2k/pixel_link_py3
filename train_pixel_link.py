@@ -148,7 +148,7 @@ def create_dataset_batch_queue(dataset):
                 tf.train.batch(
                     [image, pixel_cls_label, pixel_cls_weight, 
                         pixel_link_label, pixel_link_weight],
-                    batch_size = config.batch_size_per_gpu,
+                    batch_size = int(config.batch_size_per_gpu),
                     num_threads= FLAGS.num_preprocessing_threads,
                     capacity = 500)
         with tf.name_scope(FLAGS.dataset_name + '_prefetch_queue'):
@@ -237,8 +237,10 @@ def create_clones(batch_queue):
     train_ops = [apply_grad_op]
     
     bn_update_op = util.tf.get_update_op()
-    if bn_update_op is not None:
+    if bn_update_op!=[]:
         train_ops.append(bn_update_op)
+    # if bn_update_op is not None:
+    #     train_ops.append(bn_update_op)
     
     # moving average
     if FLAGS.using_moving_average:
@@ -285,6 +287,7 @@ def main(_):
     dataset = config_initialization()   
     
     batch_queue = create_dataset_batch_queue(dataset)
+    print(batch_queue)
     train_op = create_clones(batch_queue)
     train(train_op)
     
