@@ -3,7 +3,7 @@ set -e
 export CUDA_VISIBLE_DEVICES=$1
 IMG_PER_GPU=$2
 
-TRAIN_DIR=/content/pixel_link
+TRAIN_DIR=/models
 
 # get the number of gpus
 OLD_IFS="$IFS" 
@@ -19,7 +19,7 @@ BATCH_SIZE=`expr $NUM_GPUS \* $IMG_PER_GPU`
 #DATASET_PATH=SynthText
 
 DATASET=icdar2015
-DATASET_DIR=/content/drive/MyDrive/icdar2015
+DATASET_DIR=icdar2015
 
 python train_pixel_link.py \
             --train_dir=${TRAIN_DIR} \
@@ -34,7 +34,7 @@ python train_pixel_link.py \
             --dataset_split_name=train \
             --max_number_of_steps=100\
             --checkpoint_path=${CKPT_PATH} \
-            --using_moving_average=1
+            --using_moving_average=1         
 
 python train_pixel_link.py \
             --train_dir=${TRAIN_DIR} \

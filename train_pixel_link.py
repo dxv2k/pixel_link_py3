@@ -287,7 +287,6 @@ def main(_):
     dataset = config_initialization()   
     
     batch_queue = create_dataset_batch_queue(dataset)
-    print(batch_queue)
     train_op = create_clones(batch_queue)
     train(train_op)
     
